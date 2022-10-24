@@ -4,11 +4,25 @@ import ContactForm from "components/ContactForm/ContactForm";
 import {ContactList} from "components/ContactList/ContactList"
 import {Filter} from "components/Filter/Filter"
 import {Title, Container, TitleContact}  from "./App.styled"
+
+
 class App extends React.Component{
   state = {
     contacts: [],
     filter: '',
   }
+componentDidMount(){
+  const contactList = JSON.parse(localStorage.getItem('contacts'))
+  if(contactList){
+    this.setState({contacts: contactList})
+  }
+  
+}
+componentDidUpdate(prevState){
+  if(this.state.contacts !== prevState.contacts){
+localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+  }
+}
 handleChange = (e) =>{
     const {name, value} = e.target;
     this.setState({[name]: value})
