@@ -66,7 +66,7 @@ const isDuplicate = ({name}) => {
      <Title>Phonebook</Title>
      <ContactForm onSubmit={addContacts}/>
      <Filter handleChange={handleChange} />
-     {contacts.length === 0 ? ` ` : (<TitleContact>Contacts</TitleContact>)}
+     {contacts.length !== 0 && <TitleContact>Contacts</TitleContact>}
      <ContactList items={getFilteredContacts()} removeContact={removeContact} />
      </Container>) 
   }
